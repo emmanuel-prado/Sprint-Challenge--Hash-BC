@@ -19,6 +19,28 @@ def get_indices_of_item_weights(weights, length, limit):
     """
 
     Answer = ()
+    # check to see the size of the weights list
+    # if length is 0, or 1, return None
+    if len(weights) == 0 or len(weights) == 1:
+        return None
+    # insert key-pair (key: weight, value: list-index) into hash table using hash_table_insert
+    for i in range(len(weights)):
+        hash_table_insert(ht, weights[i], i)
+
+    # now search to see if the hashtable has the matching value using retrieve
+    # remember to subtract the weight from the limit first
+    for i in range(len(weights)):
+        match = limit - weights[i]
+        index = hash_table_retrieve(ht, match)
+        if index != None:
+            # we found the other weight that when summed with our current weight, equals the limit
+            # compare the index sizes
+            if i > index:
+                Answer = (i, index)
+                return Answer
+            else:
+                Answer = (index, i)
+                return Answer
 
     return None
 
