@@ -10,8 +10,15 @@ def get_indices_of_item_weights(weights, length, limit):
     ht = HashTable(16)
 
     """
-    YOUR CODE HERE
+    Find two items whose sum of weights equal the weight limit.
+    Retrun an Answer tuple that has the following form:
+    <zero, one)
+    Each element represents the item weights of the two packages.
+    The higher valued index should be placed in the 0 index, smaller in the 1st.
+    If a pair doesn't exist for the given inputs, return None.
     """
+
+    Answer = ()
 
     return None
 
