@@ -19,12 +19,13 @@ def proof_of_work(last_proof):
     - p is the previous proof, and p' is the new proof
     - Use the same method to generate SHA-256 hashes as the examples in class
     """
-
     start = timer()
 
     print("Searching for next proof")
     proof = 0
     #  TODO: Your code here
+    while valid_proof(last_proof, proof) is False:
+        proof += 1
 
     print("Proof found: " + str(proof) + " in " + str(timer() - start))
     return proof
@@ -40,7 +41,12 @@ def valid_proof(last_hash, proof):
     """
 
     # TODO: Your code here!
-    pass
+    last_hash = str(last_hash)
+    guess = last_hash + str(proof)
+    guess = guess.encode()
+    hash_value = hashlib.sha256(guess).hexdigest()
+    # compare the first 5 values of the new hash to the last five of the last hash
+    return hash_value[5:] == last_hash[-5:]
 
 
 if __name__ == '__main__':
